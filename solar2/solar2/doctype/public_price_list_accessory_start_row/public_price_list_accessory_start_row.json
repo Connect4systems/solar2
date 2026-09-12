@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-08-17 19:31:00.295305",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_name",
+  "stainless_price",
+  "iron_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0628\u064a\u0627\u0646",
+   "reqd": 1
+  },
+  {
+   "fieldname": "stainless_price",
+   "fieldtype": "Currency",
+   "label": "\u0627\u0633\u062a\u0646\u0644\u0633 \u2014 \u0633\u0639\u0631 \u0627\u0644\u0639\u0645\u064a\u0644",
+   "precision": "2"
+  },
+  {
+   "fieldname": "iron_price",
+   "fieldtype": "Currency",
+   "label": "\u062d\u062f\u064a\u062f \u2014 \u0633\u0639\u0631 \u0627\u0644\u0639\u0645\u064a\u0644",
+   "precision": "2"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-12 20:43:53.805006",
+ "modified_by": "Administrator",
+ "module": "Solar2",
+ "name": "Public Price List Accessory Start Row",
+ "owner": "ahmed001111753518@gmail.com",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

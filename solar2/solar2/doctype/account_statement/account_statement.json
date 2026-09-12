@@ -1,0 +1,273 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "AST-.YYYY.-.#####",
+ "creation": "2026-08-20 17:25:43.946079",
+ "default_print_format": "Account Statement - Solar City",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "statement_section",
+  "statement_title",
+  "statement_type",
+  "customer",
+  "supplier",
+  "employee",
+  "account",
+  "company",
+  "column_break_target",
+  "from_date",
+  "to_date",
+  "include_opening",
+  "generated_on",
+  "generated_by",
+  "summary_section",
+  "opening_balance",
+  "total_debit",
+  "total_credit",
+  "closing_balance",
+  "balance_status",
+  "report_status",
+  "rows_section",
+  "rows",
+  "notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "statement_section",
+   "fieldtype": "Section Break",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0643\u0634\u0641"
+  },
+  {
+   "default": "\u0643\u0634\u0641 \u062d\u0633\u0627\u0628 \u062a\u0641\u0635\u064a\u0644\u064a",
+   "fieldname": "statement_title",
+   "fieldtype": "Data",
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0643\u0634\u0641 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)"
+  },
+  {
+   "columns": 1,
+   "description": "\u0627\u062e\u062a\u0631 \u0639\u0645\u064a\u0644\u064b\u0627 \u0623\u0648 \u0645\u0648\u0631\u062f\u064b\u0627 \u0623\u0648 \u0645\u0648\u0638\u0641\u064b\u0627 \u0623\u0648 \u062d\u0633\u0627\u0628\u064b\u0627 \u0645\u062b\u0644 \u0627\u0644\u0625\u064a\u062c\u0627\u0631 \u0648\u0627\u0644\u0645\u0631\u062a\u0628\u0627\u062a \u0648\u0627\u0644\u0628\u0646\u0643.",
+   "fieldname": "statement_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u0623\u0628\u062d\u062b \u0639\u0646 \u0643\u0634\u0641 \u0644\u0640",
+   "options": "\u0639\u0645\u064a\u0644\n\u0645\u0648\u0631\u062f\n\u0645\u0648\u0638\u0641\n\u062d\u0633\u0627\u0628",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "description": "\u0627\u062e\u062a\u0631 \u0627\u0644\u0639\u0645\u064a\u0644 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u0643\u0634\u0641 \u062d\u0633\u0627\u0628\u0647.",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0639\u0645\u064a\u0644",
+   "options": "Customer"
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0627\u0644\u0645\u0648\u0631\u062f \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u0643\u0634\u0641 \u062d\u0633\u0627\u0628\u0647.",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0631\u062f",
+   "options": "Supplier"
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u0643\u0634\u0641 \u062d\u0633\u0627\u0628\u0647.",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641",
+   "options": "Employee"
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0623\u064a \u062d\u0633\u0627\u0628 \u0645\u0646 \u0634\u062c\u0631\u0629 \u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a.",
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0637\u0644\u0648\u0628",
+   "options": "Account"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0634\u0631\u0643\u0629",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_target",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "description": "\u0628\u062f\u0627\u064a\u0629 \u0627\u0644\u0641\u062a\u0631\u0629.",
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u0645\u0646 \u062a\u0627\u0631\u064a\u062e",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "description": "\u0646\u0647\u0627\u064a\u0629 \u0627\u0644\u0641\u062a\u0631\u0629.",
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u0625\u0644\u0649 \u062a\u0627\u0631\u064a\u062e",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "\u064a\u0639\u0631\u0636 \u0627\u0644\u0631\u0635\u064a\u062f \u0627\u0644\u0645\u0648\u062c\u0648\u062f \u0642\u0628\u0644 \u062a\u0627\u0631\u064a\u062e \u0628\u062f\u0627\u064a\u0629 \u0627\u0644\u0643\u0634\u0641.",
+   "fieldname": "include_opening",
+   "fieldtype": "Check",
+   "label": "\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u0631\u0635\u064a\u062f \u0642\u0628\u0644 \u0627\u0644\u0641\u062a\u0631\u0629"
+  },
+  {
+   "fieldname": "generated_on",
+   "fieldtype": "Datetime",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u0643\u0634\u0641",
+   "read_only": 1
+  },
+  {
+   "fieldname": "generated_by",
+   "fieldtype": "Link",
+   "label": "\u0623\u0646\u0634\u0623\u0647",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "label": "\u0645\u0644\u062e\u0635 \u0627\u0644\u062d\u0633\u0627\u0628"
+  },
+  {
+   "fieldname": "opening_balance",
+   "fieldtype": "Currency",
+   "label": "\u0627\u0644\u0631\u0635\u064a\u062f \u0642\u0628\u0644 \u0627\u0644\u0641\u062a\u0631\u0629",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_debit",
+   "fieldtype": "Currency",
+   "label": "\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0635\u0627\u062f\u0631 / \u0627\u0644\u0645\u062f\u064a\u0646",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_credit",
+   "fieldtype": "Currency",
+   "label": "\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0648\u0627\u0631\u062f / \u0627\u0644\u062f\u0627\u0626\u0646",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "closing_balance",
+   "fieldtype": "Currency",
+   "label": "\u0627\u0644\u0631\u0635\u064a\u062f \u0628\u0639\u062f \u0627\u0644\u0641\u062a\u0631\u0629",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "balance_status",
+   "fieldtype": "Select",
+   "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0631\u0635\u064a\u062f",
+   "options": "\u0644\u0647\n\u0639\u0644\u064a\u0647\n\u0645\u062f\u064a\u0646\n\u062f\u0627\u0626\u0646\n\u0645\u062a\u0632\u0646",
+   "read_only": 1
+  },
+  {
+   "default": "\u0645\u0633\u0648\u062f\u0629",
+   "fieldname": "report_status",
+   "fieldtype": "Select",
+   "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0643\u0634\u0641",
+   "options": "\u0645\u0633\u0648\u062f\u0629\n\u062a\u0645 \u0627\u0644\u062a\u0648\u0644\u064a\u062f",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rows_section",
+   "fieldtype": "Section Break",
+   "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u062d\u0631\u0643\u0627\u062a"
+  },
+  {
+   "description": "\u064a\u0639\u0631\u0636 \u0627\u0644\u0641\u0648\u0627\u062a\u064a\u0631 \u0648\u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a \u0648\u0627\u0644\u0642\u064a\u0648\u062f\u060c \u0648\u062a\u0641\u0627\u0635\u064a\u0644 \u0623\u0635\u0646\u0627\u0641 \u0627\u0644\u0641\u0648\u0627\u062a\u064a\u0631.",
+   "fieldname": "rows",
+   "fieldtype": "Table",
+   "label": "\u0627\u0644\u062d\u0631\u0643\u0627\u062a \u0648\u0627\u0644\u0641\u0648\u0627\u062a\u064a\u0631",
+   "options": "Account Statement Row"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0625\u0636\u0627\u0641\u064a\u0629"
+  },
+  {
+   "description": "\u0627\u0643\u062a\u0628 \u0623\u064a \u0645\u0644\u0627\u062d\u0638\u0629 \u062a\u0631\u064a\u062f \u0638\u0647\u0648\u0631\u0647\u0627 \u0641\u064a \u0627\u0644\u0643\u0634\u0641 \u0627\u0644\u0645\u0637\u0628\u0648\u0639.",
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0643\u0634\u0641"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-12 20:48:36.227869",
+ "modified_by": "Administrator",
+ "module": "Solar2",
+ "name": "Account Statement",
+ "owner": "ahmed001111753518@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Solar City User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

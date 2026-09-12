@@ -1,0 +1,312 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-08-17 12:41:33.339565",
+ "description": "\u0634\u0627\u0634\u0629 \u0645\u0648\u062d\u062f\u0629 \u0644\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062d\u0631\u0643\u0627\u062a \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0648\u0627\u0631\u062f\u0629 \u0648\u0627\u0644\u0645\u0646\u0635\u0631\u0641\u0629 \u0648\u062a\u0631\u062d\u064a\u0644\u0647\u0627 \u0645\u062d\u0627\u0633\u0628\u064a\u064b\u0627.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "movement_section",
+  "movement_type",
+  "posting_date",
+  "company",
+  "column_break_party",
+  "party_type",
+  "party",
+  "mode_of_payment",
+  "amount",
+  "accounting_section",
+  "counterpart_account",
+  "project",
+  "cost_center",
+  "column_break_reference",
+  "reference_no",
+  "reference_date",
+  "attachment",
+  "remarks",
+  "posting_result_section",
+  "posting_status",
+  "created_document_type",
+  "created_document",
+  "error_message",
+  "amended_from",
+  "reference_section",
+  "reference_doctype",
+  "reference_name"
+ ],
+ "fields": [
+  {
+   "default": "FM-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "\u0633\u0644\u0633\u0644\u0629 \u0627\u0644\u062a\u0633\u0645\u064a\u0629",
+   "options": "FM-.YYYY.-"
+  },
+  {
+   "description": "\u0633\u062c\u0651\u0644 \u0647\u0646\u0627 \u0623\u064a \u0645\u0628\u0644\u063a \u062f\u062e\u0644 \u0625\u0644\u0649 \u0627\u0644\u0634\u0631\u0643\u0629 \u0623\u0648 \u062e\u0631\u062c \u0645\u0646\u0647\u0627.",
+   "fieldname": "movement_section",
+   "fieldtype": "Section Break",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0639\u0645\u0644\u064a\u0629"
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0648\u0627\u0631\u062f \u0639\u0646\u062f \u0627\u0633\u062a\u0644\u0627\u0645 \u0645\u0628\u0644\u063a\u060c \u0648\u0645\u0646\u0635\u0631\u0641 \u0639\u0646\u062f \u062f\u0641\u0639 \u0645\u0628\u0644\u063a.",
+   "fieldname": "movement_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0639\u0645\u0644\u064a\u0629",
+   "options": "\u0648\u0627\u0631\u062f\n\u0645\u0646\u0635\u0631\u0641",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "description": "\u0627\u0644\u064a\u0648\u0645 \u0627\u0644\u0630\u064a \u062d\u062f\u062b\u062a \u0641\u064a\u0647 \u0627\u0644\u0639\u0645\u0644\u064a\u0629.",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0639\u0645\u0644\u064a\u0629",
+   "reqd": 1
+  },
+  {
+   "default": "Solar City",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0634\u0631\u0643\u0629",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_party",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0637\u0631\u0641",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629 \u0628\u0627\u0644\u0639\u0645\u0644\u064a\u0629 \u0625\u0646 \u0648\u062c\u062f\u062a.",
+   "fieldname": "party",
+   "fieldtype": "Dynamic Link",
+   "label": "\u0627\u0644\u0639\u0645\u064a\u0644 / \u0627\u0644\u0645\u0648\u0631\u062f / \u0627\u0644\u0645\u0648\u0638\u0641",
+   "options": "party_type"
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0627\u0644\u0628\u0646\u0643 \u0623\u0648 \u0627\u0644\u0635\u0646\u062f\u0648\u0642 \u0627\u0644\u0630\u064a \u0627\u0633\u062a\u0644\u0645 \u0623\u0648 \u062f\u0641\u0639 \u0627\u0644\u0645\u0628\u0644\u063a.",
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0637\u0631\u064a\u0642\u0629 \u0627\u0633\u062a\u0644\u0627\u0645 \u0623\u0648 \u062f\u0641\u0639 \u0627\u0644\u0645\u0628\u0644\u063a",
+   "options": "Mode of Payment"
+  },
+  {
+   "description": "\u0627\u0643\u062a\u0628 \u0627\u0644\u0642\u064a\u0645\u0629 \u0628\u0627\u0644\u062c\u0646\u064a\u0647 \u0627\u0644\u0645\u0635\u0631\u064a.",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0628\u0644\u063a",
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "accounting_section",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u062d\u0633\u0627\u0628 \u0648\u0627\u0644\u0645\u0634\u0631\u0648\u0639"
+  },
+  {
+   "description": "\u0627\u062e\u062a\u0631 \u0628\u0646\u062f\u064b\u0627 \u0645\u062b\u0644 \u0627\u0644\u0625\u064a\u062c\u0627\u0631 \u0623\u0648 \u0627\u0644\u0645\u0631\u062a\u0628\u0627\u062a \u0625\u0630\u0627 \u0644\u0645 \u062a\u0643\u0646 \u0627\u0644\u0639\u0645\u0644\u064a\u0629 \u0645\u0631\u062a\u0628\u0637\u0629 \u0628\u0639\u0645\u064a\u0644 \u0623\u0648 \u0645\u0648\u0631\u062f.",
+   "fieldname": "counterpart_account",
+   "fieldtype": "Link",
+   "label": "\u0628\u0646\u062f \u0627\u0644\u0645\u0635\u0631\u0648\u0641 \u0623\u0648 \u0627\u0644\u0625\u064a\u0631\u0627\u062f",
+   "options": "Account"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0645\u0634\u0631\u0648\u0639 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)",
+   "options": "Project"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0642\u0633\u0645 \u0623\u0648 \u0645\u0631\u0643\u0632 \u0627\u0644\u062a\u0643\u0644\u0641\u0629 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "column_break_reference",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_no",
+   "fieldtype": "Data",
+   "label": "\u0631\u0642\u0645 \u0627\u0644\u0625\u064a\u0635\u0627\u0644 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)"
+  },
+  {
+   "fieldname": "reference_date",
+   "fieldtype": "Date",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0625\u064a\u0635\u0627\u0644 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "\u0635\u0648\u0631\u0629 \u0627\u0644\u0625\u064a\u0635\u0627\u0644 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)"
+  },
+  {
+   "description": "\u0627\u0643\u062a\u0628 \u0648\u0635\u0641\u064b\u0627 \u0648\u0627\u0636\u062d\u064b\u0627 \u0644\u0644\u0639\u0645\u0644\u064a\u0629 \u0644\u064a\u0638\u0647\u0631 \u0641\u064a \u0643\u0634\u0641 \u0627\u0644\u062d\u0633\u0627\u0628.",
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "\u0648\u0635\u0641 \u0627\u0644\u0639\u0645\u0644\u064a\u0629",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "posting_result_section",
+   "fieldtype": "Section Break",
+   "label": "\u0646\u062a\u064a\u062c\u0629 \u0627\u0644\u062a\u0631\u062d\u064a\u0644"
+  },
+  {
+   "default": "Draft",
+   "description": "\u0645\u0633\u0648\u062f\u0629 \u062a\u062d\u062a\u0627\u062c \u0645\u0631\u0627\u062c\u0639\u0629. \u0645\u0631\u062d\u0651\u0644 \u064a\u0639\u0646\u064a \u0623\u0646 \u0627\u0644\u0642\u064a\u062f \u062f\u062e\u0644 \u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a \u0627\u0644\u0641\u0639\u0644\u064a\u0629.",
+   "fieldname": "posting_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u062d\u0627\u0644\u0629 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u0642\u064a\u062f",
+   "options": "Draft\nPosted\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "created_document_type",
+   "fieldtype": "Data",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0642\u064a\u062f \u0627\u0644\u0645\u0646\u0634\u0623",
+   "read_only": 1
+  },
+  {
+   "description": "\u0631\u0642\u0645 \u0642\u064a\u062f \u0627\u0644\u064a\u0648\u0645\u064a\u0629 \u0627\u0644\u0646\u0627\u062a\u062c \u0645\u0646 \u0647\u0630\u0647 \u0627\u0644\u0639\u0645\u0644\u064a\u0629.",
+   "fieldname": "created_document",
+   "fieldtype": "Data",
+   "label": "\u0631\u0642\u0645 \u0642\u064a\u062f \u0627\u0644\u064a\u0648\u0645\u064a\u0629",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "\u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u062e\u0637\u0623",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Financial Movement",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "reference_section",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0641\u0627\u062a\u0648\u0631\u0629 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Select",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0633\u062a\u0646\u062f \u0627\u0644\u0645\u0631\u062a\u0628\u0637",
+   "options": "\nSales Invoice\nPurchase Invoice"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "\u0631\u0642\u0645 \u0627\u0644\u0641\u0627\u062a\u0648\u0631\u0629",
+   "options": "reference_doctype"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-12 20:37:34.821434",
+ "modified_by": "Administrator",
+ "module": "Solar2",
+ "name": "Financial Movement",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "ahmed001111753518@gmail.com",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "posting_date,remarks,party",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "remarks"
+}

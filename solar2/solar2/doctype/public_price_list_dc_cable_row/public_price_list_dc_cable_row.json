@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-08-17 19:30:50.117811",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "brand",
+  "specification_1",
+  "price_1",
+  "specification_2",
+  "price_2"
+ ],
+ "fields": [
+  {
+   "fieldname": "brand",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0646\u0648\u0639",
+   "reqd": 1
+  },
+  {
+   "fieldname": "specification_1",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0645\u0648\u0627\u0635\u0641\u0629 \u0627\u0644\u0623\u0648\u0644\u0649"
+  },
+  {
+   "fieldname": "price_1",
+   "fieldtype": "Currency",
+   "label": "\u0633\u0639\u0631 \u0627\u0644\u0623\u0648\u0644\u0649",
+   "precision": "2"
+  },
+  {
+   "fieldname": "specification_2",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0645\u0648\u0627\u0635\u0641\u0629 \u0627\u0644\u062b\u0627\u0646\u064a\u0629"
+  },
+  {
+   "fieldname": "price_2",
+   "fieldtype": "Currency",
+   "label": "\u0633\u0639\u0631 \u0627\u0644\u062b\u0627\u0646\u064a\u0629",
+   "precision": "2"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-12 20:43:51.666019",
+ "modified_by": "Administrator",
+ "module": "Solar2",
+ "name": "Public Price List DC Cable Row",
+ "owner": "ahmed001111753518@gmail.com",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
