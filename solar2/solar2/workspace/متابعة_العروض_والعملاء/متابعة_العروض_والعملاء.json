@@ -1,0 +1,163 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"solar-follow-header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0648\u0636 \u0648\u0627\u0644\u0639\u0645\u0644\u0627\u0621</b></span>\",\"col\":12}},{\"id\":\"solar-open-quotes-report\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u062c\u062f\u0648\u0644 \u0627\u0644\u0639\u0631\u0648\u0636 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629\",\"col\":12}},{\"id\":\"solar-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0639\u0631\u0648\u0636 \u062a\u062d\u062a\u0627\u062c \u0645\u062a\u0627\u0628\u0639\u0629\",\"col\":3}},{\"id\":\"solar-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0645\u062a\u0627\u0628\u0639\u0627\u062a \u0627\u0644\u064a\u0648\u0645\",\"col\":3}},{\"id\":\"solar-card-3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0645\u062a\u0627\u0628\u0639\u0627\u062a \u0645\u062a\u0623\u062e\u0631\u0629\",\"col\":3}},{\"id\":\"solar-card-4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0631\u062f \u0627\u0644\u0639\u0645\u064a\u0644\",\"col\":3}},{\"id\":\"solar-card-5\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0639\u0631\u0648\u0636 \u0628\u062f\u0648\u0646 \u0645\u0648\u0639\u062f \u0645\u062a\u0627\u0628\u0639\u0629\",\"col\":3}},{\"id\":\"solar-space-1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"solar-header-2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u0627\u0644\u0648\u0635\u0648\u0644 \u0627\u0644\u0633\u0631\u064a\u0639</b></span>\",\"col\":12}},{\"id\":\"solar-short-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0643\u0644 \u0639\u0631\u0648\u0636 \u0627\u0644\u0623\u0633\u0639\u0627\u0631\",\"col\":3}},{\"id\":\"solar-short-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0645\u0628\u0627\u062f\u0631\u0627\u062a \u0627\u0644\u0628\u064a\u0639\",\"col\":3}},{\"id\":\"solar-short-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0627\u0644\u0639\u0645\u0644\u0627\u0621\",\"col\":3}},{\"id\":\"solar-short-4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0645\u0647\u0627\u0645 \u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629\",\"col\":3}},{\"id\":\"solar-short-5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0635\u0641\u062d\u0629 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629\",\"col\":3}},{\"id\":\"solar-short-6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u062a\u0630\u0643\u064a\u0631\u0627\u062a \u0627\u0644\u0646\u0638\u0627\u0645\",\"col\":3}},{\"id\":\"solar-short-7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0633\u062c\u0644 \u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0645\u0644\u0627\u0621\",\"col\":3}}]",
+ "creation": "2026-08-16 18:30:47.723265",
+ "custom_blocks": [
+  {
+   "custom_block_name": "Solar City - Customer Followup Card",
+   "label": "\u0633\u062c\u0644 \u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0645\u0644\u0627\u0621"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "chart",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0648\u0636 \u0648\u0627\u0644\u0639\u0645\u0644\u0627\u0621",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0645\u0628\u064a\u0639\u0627\u062a",
+   "link_count": 0,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0639\u0631\u0648\u0636 \u0627\u0644\u0623\u0633\u0639\u0627\u0631",
+   "link_count": 0,
+   "link_to": "Quotation",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0645\u0628\u0627\u062f\u0631\u0627\u062a \u0627\u0644\u0628\u064a\u0639",
+   "link_count": 0,
+   "link_to": "Opportunity",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0627\u0644\u0639\u0645\u0644\u0627\u0621",
+   "link_count": 0,
+   "link_to": "Customer",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0633\u062c\u0644 \u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0645\u0644\u0627\u0621",
+   "link_count": 0,
+   "link_to": "Customer Followup",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-09-10 11:56:21.960497",
+ "modified_by": "Administrator",
+ "module": "Solar2",
+ "name": "\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0648\u0636 \u0648\u0627\u0644\u0639\u0645\u0644\u0627\u0621",
+ "number_cards": [
+  {
+   "label": "\u0639\u0631\u0648\u0636 \u062a\u062d\u062a\u0627\u062c \u0645\u062a\u0627\u0628\u0639\u0629",
+   "number_card_name": "\u0639\u0631\u0648\u0636 \u062a\u062d\u062a\u0627\u062c \u0645\u062a\u0627\u0628\u0639\u0629"
+  },
+  {
+   "label": "\u0645\u062a\u0627\u0628\u0639\u0627\u062a \u0627\u0644\u064a\u0648\u0645",
+   "number_card_name": "\u0645\u062a\u0627\u0628\u0639\u0627\u062a \u0627\u0644\u064a\u0648\u0645"
+  },
+  {
+   "label": "\u0645\u062a\u0627\u0628\u0639\u0627\u062a \u0645\u062a\u0623\u062e\u0631\u0629",
+   "number_card_name": "\u0645\u062a\u0627\u0628\u0639\u0627\u062a \u0645\u062a\u0623\u062e\u0631\u0629"
+  },
+  {
+   "label": "\u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0631\u062f \u0627\u0644\u0639\u0645\u064a\u0644",
+   "number_card_name": "\u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0631\u062f \u0627\u0644\u0639\u0645\u064a\u0644"
+  },
+  {
+   "label": "\u0639\u0631\u0648\u0636 \u0628\u062f\u0648\u0646 \u0645\u0648\u0639\u062f \u0645\u062a\u0627\u0628\u0639\u0629",
+   "number_card_name": "\u0639\u0631\u0648\u0636 \u0628\u062f\u0648\u0646 \u0645\u0648\u0639\u062f \u0645\u062a\u0627\u0628\u0639\u0629"
+  }
+ ],
+ "owner": "ahmed001111753518@gmail.com",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Solar City User"
+  }
+ ],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "doc_view": "List",
+   "icon": "quotation",
+   "label": "\u0643\u0644 \u0639\u0631\u0648\u0636 \u0627\u0644\u0623\u0633\u0639\u0627\u0631",
+   "link_to": "Quotation",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "icon": "opportunity",
+   "label": "\u0645\u0628\u0627\u062f\u0631\u0627\u062a \u0627\u0644\u0628\u064a\u0639",
+   "link_to": "Opportunity",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "icon": "customer",
+   "label": "\u0627\u0644\u0639\u0645\u0644\u0627\u0621",
+   "link_to": "Customer",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "icon": "check",
+   "label": "\u0645\u0647\u0627\u0645 \u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629",
+   "link_to": "ToDo",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "icon": "list",
+   "label": "\u0635\u0641\u062d\u0629 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629",
+   "type": "URL",
+   "url": "/app/quotation/view/list?order_by=custom_\u0645\u0648\u0639\u062f_\u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629_\u0627\u0644\u0642\u0627\u062f\u0645\u0629%20asc"
+  },
+  {
+   "doc_view": "",
+   "icon": "notification",
+   "label": "\u062a\u0630\u0643\u064a\u0631\u0627\u062a \u0627\u0644\u0646\u0638\u0627\u0645",
+   "type": "URL",
+   "url": "/app/notification"
+  },
+  {
+   "doc_view": "",
+   "label": "\u062c\u062f\u0648\u0644 \u0627\u0644\u0639\u0631\u0648\u0636 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629",
+   "link_to": "\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0648\u0636 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629",
+   "report_ref_doctype": "Quotation",
+   "type": "Report"
+  },
+  {
+   "doc_view": "",
+   "label": "\u0633\u062c\u0644 \u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0645\u0644\u0627\u0621",
+   "type": "URL",
+   "url": "/app/customer-followup"
+  }
+ ],
+ "title": "\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0648\u0636 \u0648\u0627\u0644\u0639\u0645\u0644\u0627\u0621"
+}

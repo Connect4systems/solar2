@@ -1,0 +1,73 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"solar-design-header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u062a\u0635\u0645\u064a\u0645 \u0648\u062a\u0633\u0639\u064a\u0631 \u0645\u062d\u0637\u0627\u062a \u0627\u0644\u0637\u0627\u0642\u0629 \u0627\u0644\u0634\u0645\u0633\u064a\u0629</b></span>\",\"col\":12}},{\"id\":\"solar-design-card-0\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0625\u062c\u0645\u0627\u0644\u064a \u062a\u0635\u0645\u064a\u0645\u0627\u062a \u0627\u0644\u0645\u062d\u0637\u0627\u062a\",\"col\":3}},{\"id\":\"solar-design-card-1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u0645\u0633\u0648\u062f\u0627\u062a \u0627\u0644\u062a\u0635\u0645\u064a\u0645\",\"col\":3}},{\"id\":\"solar-design-card-2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u062a\u062d\u062a\u0627\u062c \u0645\u0631\u0627\u062c\u0639\u0629 \u0645\u0647\u0646\u062f\u0633\",\"col\":3}},{\"id\":\"solar-design-card-3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u062a\u0635\u0645\u064a\u0645\u0627\u062a \u0645\u0639\u062a\u0645\u062f\u0629\",\"col\":3}},{\"id\":\"solar-design-card-4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"\u062a\u062d\u0648\u0644\u062a \u0625\u0644\u0649 \u0639\u0631\u0636 \u0633\u0639\u0631\",\"col\":3}},{\"id\":\"solar-design-space\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"solar-design-header-2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>\u0627\u0644\u0648\u0635\u0648\u0644 \u0627\u0644\u0633\u0631\u064a\u0639</b></span>\",\"col\":12}},{\"id\":\"solar-design-short-0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u062a\u0635\u0645\u064a\u0645 \u0645\u062d\u0637\u0629 \u062c\u062f\u064a\u062f\u0629\",\"col\":3}},{\"id\":\"solar-design-short-1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0643\u0644 \u0627\u0644\u062a\u0635\u0645\u064a\u0645\u0627\u062a\",\"col\":3}},{\"id\":\"solar-design-short-2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0627\u0644\u0623\u0635\u0646\u0627\u0641 \u0648\u0627\u0644\u0623\u0633\u0639\u0627\u0631\",\"col\":3}},{\"id\":\"solar-design-short-3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0627\u0644\u0639\u0631\u0648\u0636 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629\",\"col\":3}}]",
+ "creation": "2026-08-16 19:50:43.403409",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 1,
+ "label": "\u062a\u0635\u0645\u064a\u0645 \u0648\u062a\u0633\u0639\u064a\u0631 \u0627\u0644\u0645\u062d\u0637\u0627\u062a",
+ "links": [],
+ "modified": "2026-09-10 11:56:34.005481",
+ "modified_by": "Administrator",
+ "module": "Solar2",
+ "name": "\u062a\u0635\u0645\u064a\u0645 \u0648\u062a\u0633\u0639\u064a\u0631 \u0627\u0644\u0645\u062d\u0637\u0627\u062a",
+ "number_cards": [
+  {
+   "label": "\u0625\u062c\u0645\u0627\u0644\u064a \u062a\u0635\u0645\u064a\u0645\u0627\u062a \u0627\u0644\u0645\u062d\u0637\u0627\u062a",
+   "number_card_name": "\u0625\u062c\u0645\u0627\u0644\u064a \u062a\u0635\u0645\u064a\u0645\u0627\u062a \u0627\u0644\u0645\u062d\u0637\u0627\u062a"
+  },
+  {
+   "label": "\u0645\u0633\u0648\u062f\u0627\u062a \u0627\u0644\u062a\u0635\u0645\u064a\u0645",
+   "number_card_name": "\u0645\u0633\u0648\u062f\u0627\u062a \u0627\u0644\u062a\u0635\u0645\u064a\u0645"
+  },
+  {
+   "label": "\u062a\u062d\u062a\u0627\u062c \u0645\u0631\u0627\u062c\u0639\u0629 \u0645\u0647\u0646\u062f\u0633",
+   "number_card_name": "\u062a\u062d\u062a\u0627\u062c \u0645\u0631\u0627\u062c\u0639\u0629 \u0645\u0647\u0646\u062f\u0633"
+  },
+  {
+   "label": "\u062a\u0635\u0645\u064a\u0645\u0627\u062a \u0645\u0639\u062a\u0645\u062f\u0629",
+   "number_card_name": "\u062a\u0635\u0645\u064a\u0645\u0627\u062a \u0645\u0639\u062a\u0645\u062f\u0629"
+  },
+  {
+   "label": "\u062a\u062d\u0648\u0644\u062a \u0625\u0644\u0649 \u0639\u0631\u0636 \u0633\u0639\u0631",
+   "number_card_name": "\u062a\u062d\u0648\u0644\u062a \u0625\u0644\u0649 \u0639\u0631\u0636 \u0633\u0639\u0631"
+  }
+ ],
+ "owner": "ahmed001111753518@gmail.com",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "\u062a\u0635\u0645\u064a\u0645 \u0645\u062d\u0637\u0629 \u062c\u062f\u064a\u062f\u0629",
+   "link_to": "Solar Design",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "\u0643\u0644 \u0627\u0644\u062a\u0635\u0645\u064a\u0645\u0627\u062a",
+   "link_to": "Solar Design",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "\u0627\u0644\u0623\u0635\u0646\u0627\u0641 \u0648\u0627\u0644\u0623\u0633\u0639\u0627\u0631",
+   "link_to": "Item",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "\u0627\u0644\u0639\u0631\u0648\u0636 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629",
+   "link_to": "\u0645\u062a\u0627\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0648\u0636 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629",
+   "report_ref_doctype": "Quotation",
+   "type": "Report"
+  }
+ ],
+ "title": "\u062a\u0635\u0645\u064a\u0645 \u0648\u062a\u0633\u0639\u064a\u0631 \u0627\u0644\u0645\u062d\u0637\u0627\u062a"
+}
