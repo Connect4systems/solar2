@@ -5,6 +5,17 @@ app_description = "Solar customization"
 app_email = "info@connect4systems.com"
 app_license = "mit"
 
+fixtures = [
+    {
+        "dt": "Client Script",
+        "filters": [["module", "=", "Solar2"]],
+    },
+    {
+        "dt": "Server Script",
+        "filters": [["module", "=", "Solar2"]],
+    },
+]
+
 # Apps
 # ------------------
 
