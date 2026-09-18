@@ -9,37 +9,37 @@
         'الموظف': 'Employee'
     };
 
-    const fm_party_sort_field = (party_type) => {
-        const map = {
-            Customer: 'customer_name',
-            Supplier: 'supplier_name',
-            Employee: 'employee_name'
-        };
-        return map[party_type] || 'name';
+    const fm_apply_party_query = (frm) => {
+        if (!frm.fields_dict.party) return;
+        // A Dynamic Link points to the field containing the DocType name.
+        frm.set_df_property('party', 'options', 'party_type');
+        frm.set_query('party', () => ({
+            filters: frm.doc.party_type === 'Employee'
+                ? { status: 'Active' }
+                : { disabled: 0 }
+        }));
     };
 
-    const fm_apply_party_query = (frm) => {
-        const party_type = frm.doc.party_type || fm_party_map[frm.doc.custom_party_category] || '';
-        if (!party_type || !frm.fields_dict.party) return;
-
-        frm.set_query('party', () => ({
-            query: 'frappe.desk.search.search_link',
-            doctype: party_type,
-            filters: { disabled: 0 },
-            order_by: `${fm_party_sort_field(party_type)} asc, name asc`,
-            page_length: 200
-        }));
+    const fm_sync_party_type = async (frm, clear_party = false) => {
+        const party_type = fm_party_map[frm.doc.custom_party_category] || null;
+        fm_apply_party_query(frm);
+        if (frm.doc.party && (clear_party || (frm.doc.party_type && frm.doc.party_type !== party_type))) {
+            await frm.set_value('party', null);
+        }
+        if (frm.doc.party_type !== party_type) {
+            await frm.set_value('party_type', party_type);
+        }
     };
 
     frappe.ui.form.on('Financial Movement', {
         onload(frm) {
-            fm_apply_party_query(frm);
+            return fm_sync_party_type(frm);
         },
         refresh(frm) {
             fm_apply_party_query(frm);
         },
         custom_party_category(frm) {
-            fm_apply_party_query(frm);
+            return fm_sync_party_type(frm, true);
         },
         party_type(frm) {
             fm_apply_party_query(frm);
