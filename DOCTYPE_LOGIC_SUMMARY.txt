@@ -1,0 +1,392 @@
+SOLAR2 DOCTYPE LOGIC SUMMARY
+=============================
+
+Scope
+-----
+This report covers the 22 custom DocTypes under solar2/solar2/doctype. It was prepared by reading each DocType JSON definition, its Python controller, its local JavaScript file when present, fixture Client Scripts, fixture Server Scripts, and hooks.py.
+
+Important architecture note
+---------------------------
+- The custom Python files are generated Document subclasses and currently contain only pass. They do not implement business rules.
+- The generated JavaScript files are scaffold comments only, except that the active behavior is stored in fixture/client_script.json.
+- hooks.py exports every Client Script and Server Script whose module is Solar2. It has no active doc_events, overridden DocType classes, scheduled tasks, or permission hooks.
+- Most custom DocTypes have no dedicated Client Script. Their behavior is therefore standard Frappe form behavior plus field metadata.
+- The fixture export also contains scripts for standard ERPNext DocTypes such as Quotation, Sales Invoice, Purchase Invoice, Sales Order, Purchase Order, Item, Customer, Supplier, Payment Entry, Delivery Note, Purchase Receipt, Customer Followup, Solar Design, and Supplier RFQ Request. Those scripts are summarized in the final section because they affect the surrounding workflows but are not custom DocTypes in this directory.
+
+1. Account Statement
+--------------------
+Source: solar2/solar2/doctype/account_statement/account_statement.json
+Purpose: Generate a customer, supplier, employee, or general-account statement for a date range.
+
+Metadata:
+- Naming: AST-.YYYY.-.#####
+- Parent DocType; not submittable.
+- Title field: statement_title.
+- Default print format: Account Statement - Solar City.
+- Permissions: System Manager, Accounts Manager, Accounts User, Sales User, Sales Manager, Solar City User.
+
+Fields and relationships:
+- statement_section: Section Break.
+- statement_title: Data; optional report title.
+- statement_type: required Select: عميل, مورد, موظف, حساب.
+- customer: Link to Customer; used when statement_type is عميل.
+- supplier: Link to Supplier; used when statement_type is مورد.
+- employee: Link to Employee; used when statement_type is موظف.
+- account: Link to Account; used when statement_type is حساب.
+- company: required Link to Company; the scripts currently hide it and use the company context/default.
+- column_break_target: Column Break.
+- from_date, to_date: required Date range.
+- include_opening: Check, enabled by default.
+- generated_on: read-only Datetime.
+- generated_by: read-only Link to User.
+- summary_section: Section Break.
+- opening_balance, total_debit, total_credit, closing_balance: read-only Currency using company currency.
+- balance_status: read-only Select.
+- report_status: read-only Select, default مسودة.
+- rows_section: Section Break.
+- rows: Table of Account Statement Row.
+- notes_section: Section Break.
+- notes: Small Text.
+
+Client Scripts:
+- Account Statement - Generator and Account Statement - التفاصيل والبيانات share the generator flow. They switch visibility and required status among customer, supplier, employee, and account based on statement_type; change labels; filter account choices to non-group, enabled accounts; validate the target, company, and date range; query General Ledger data; calculate opening/debit/credit/closing totals and balance status; populate rows; and refresh the summary/report status.
+- Account Statement - Simple Help adds field tooltips describing target selection, dates, opening balance, rows, and notes.
+- There is no server-side script for this DocType. The generated Python controller is empty.
+
+Related child DocType:
+- Account Statement Row stores the generated transaction and grouping rows.
+
+2. Account Statement Row
+------------------------
+Source: solar2/solar2/doctype/account_statement_row/account_statement_row.json
+Purpose: Child-table line used by Account Statement to show transactions, invoice lines, and group totals.
+
+Metadata: Child table (istable=1); no independent permissions.
+
+Fields:
+- posting_date: Date.
+- voucher_type, voucher_no, group_label, remarks, party_type, party, uom: Data.
+- account: Link to Account.
+- qty: Float.
+- unit_price, debit, credit, balance, group_debit_total, group_credit_total, group_balance: Currency.
+- project: Link to Project.
+- cost_center: Link to Cost Center.
+- row_type: hidden Select: حركة, فاتورة, بند فاتورة, إجمالي مجموعة.
+
+Scripts: No dedicated Client Script or Server Script. Rows are populated by the Account Statement generator.
+
+3. Financial Movement
+---------------------
+Source: solar2/solar2/doctype/financial_movement/financial_movement.json
+Purpose: Record an incoming or outgoing cash movement and create the corresponding Payment Entry or Journal Entry when submitted.
+
+Metadata:
+- Naming: from naming_series; default series FM-.YYYY.-.
+- Submittable.
+- Permissions: System Manager and Accounts Manager can submit/cancel; Accounts User, Sales User, and Sales Manager can create/read/write/submit but not cancel.
+
+Fields and relationships:
+- naming_series: hidden Select.
+- movement_section: Section Break.
+- movement_type: required Select: وارد, منصرف.
+- posting_date: required Date, default Today.
+- company: required Link to Company.
+- column_break_party: Column Break.
+- party_type: read-only Link to DocType.
+- party: Dynamic Link; customer, supplier, or employee depending on party type.
+- mode_of_payment: Link to Mode of Payment; supplies the bank/cash account in simple mode.
+- amount: Currency using company currency.
+- accounting_section: Section Break.
+- counterpart_account: Link to Account; expense/revenue side in simple mode.
+- project: Link to Project.
+- cost_center: Link to Cost Center.
+- column_break_reference: Column Break.
+- reference_no: Data.
+- reference_date: Date.
+- attachment: Attach.
+- remarks: required Small Text.
+- posting_result_section: Section Break.
+- posting_status: read-only Select: Draft, Posted, Failed.
+- created_document_type, created_document: read-only Data; identify the generated Payment Entry or Journal Entry.
+- error_message: read-only Small Text.
+- amended_from: Link to Financial Movement.
+- reference_section: Section Break.
+- reference_doctype: Select: Sales Invoice, Purchase Invoice.
+- reference_name: Dynamic Link.
+
+Client Scripts:
+- Financial Movement - تبسيط التسجيل manages the form. It maps Arabic party labels to Customer/Supplier/Employee, resolves the Mode of Payment account, resolves the party account, chooses a valid non-group Cost Center, validates simple or multi-line accounting mode, validates debit/credit balance, and provides the submit/posting action and error feedback.
+- Solar City Accounting - Simple Help adds tooltips for movement direction, amount, party, payment mode, counterpart account, project, cost center, references, attachments, remarks, accounting lines, and posting status.
+- The scripts refer to custom_entry_mode, custom_party_category, custom_accounting_lines, and custom_operation_key. These fields are not present in the current Financial Movement JSON, so the installed site must contain Custom Fields for the multi-line workflow to function fully.
+
+Server Scripts:
+- Financial Movement - ترحيل محاسبي تلقائي (After Submit) requires company, posting_date, and a positive amount; prevents duplicate posting using the movement name, custom_operation_key, created_document, and existing linked accounting documents; validates the payment account and any custom accounting lines; creates either a Payment Entry for simple movements or a Journal Entry for complex movements; sets custom_financial_movement on the created document; stores created_document_type/created_document; and sets posting_status to Posted or Failed with error_message.
+- Financial Movement - إلغاء المستند المنشأ (Before Cancel) loads the linked created document and cancels it when it is submitted.
+
+4. Financial Movement Line
+--------------------------
+Source: solar2/solar2/doctype/financial_movement_line/financial_movement_line.json
+Purpose: Defined child-row schema for accounting lines.
+
+Metadata: Child table (istable=1); no independent permissions.
+
+Fields:
+- account: required Link to Account.
+- debit, credit: Currency.
+- party_type: Select: Customer, Supplier, Employee.
+- party: Dynamic Link.
+- project: Link to Project.
+- cost_center: Link to Cost Center.
+- remarks: Data.
+
+Important relationship note: The current JSON does not expose a Table field linking this child to Financial Movement. The active fixture scripts instead refer to custom_accounting_lines, which must be a separately installed Custom Field or a pending schema change.
+
+5. Public Price List
+--------------------
+Source: solar2/solar2/doctype/public_price_list/public_price_list.json
+Purpose: Create, edit, publish, print, and present a public customer price list.
+
+Metadata:
+- Naming: SPL-{#####}.
+- Submittable.
+- Title field: list_name.
+- Permissions: System Manager, Sales Manager, Sales User, Accounts Manager.
+
+Fields and relationships:
+- list_name: required Data.
+- company: required Link to Company.
+- status: required Select: مسودة, منشورة, موقوفة, منتهية.
+- valid_from, valid_to: Date.
+- public_slug: required unique Data; public URL identifier.
+- published_at: read-only Datetime.
+- published_by: read-only Link to User.
+- header_source_note: Read Only.
+- items_section: Section Break.
+- items: Table of Public Price List Item.
+- footer_note: Small Text.
+- terms: Text Editor.
+- internal_notes: Small Text.
+- amended_from: Link to Public Price List.
+
+Client Script: Public Price List - نشر القائمة loads company/header data, renders a public-facing HTML view, provides edit mode for introduction/terms/content, adds print styling, handles the public access gate, and publishes by setting status, published_at, and published_by. It is presentation-heavy and does not use a server-side publish method.
+
+Related child DocType: Public Price List Item is the only currently linked price-list table in this parent JSON. The specialized price-list row DocTypes below exist as schemas but are not linked by a current Table field.
+
+6. Public Price List Item
+-------------------------
+Source: solar2/solar2/doctype/public_price_list_item/public_price_list_item.json
+Purpose: General item row displayed in Public Price List.
+
+Metadata: Child table; no independent permissions.
+
+Fields:
+- section: required Data.
+- item_name: required Data.
+- item_code: Data.
+- brand: Data.
+- specification: Small Text.
+- unit: Data.
+- customer_price: required Currency.
+- manufacturer_url: Data.
+- image: Attach Image.
+- notes: Small Text.
+- sort_order: Int, default 0.
+- published: Check, default enabled.
+
+Scripts: No dedicated scripts. Rendering and publication are handled by Public Price List's Client Script.
+
+7. Public Price List Visit
+--------------------------
+Source: solar2/solar2/doctype/public_price_list_visit/public_price_list_visit.json
+Purpose: Store customer engagement events for a public price list.
+
+Metadata:
+- Naming: SPLV-{#####}.
+- Standalone DocType; not a child table.
+- Permissions: System Manager, Sales Manager, Sales User.
+
+Fields:
+- public_price_list: required Link to Public Price List.
+- company_name: required Data.
+- phone: required Data.
+- visit_datetime: Datetime, default Now.
+- event_type: Select: فتح القائمة, فتح صنف, طلب عرض سعر.
+- item_name: Data.
+- repeat_visit: Check, default false.
+- session_id: read-only Data.
+- source: Data.
+- user_agent: read-only Small Text.
+- notes: Small Text.
+
+Scripts: No active Client Script or Server Script references this DocType. It is a storage schema waiting for integration from the public page or API.
+
+8. Public Price List Accessory Start Row
+----------------------------------------
+Source: solar2/solar2/doctype/public_price_list_accessory_start_row/public_price_list_accessory_start_row.json
+Purpose: Child row for accessory pricing at the beginning of a specialized price-list section.
+
+Fields: item_name (required Data), stainless_price (Currency), iron_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+9. Public Price List Accessory End Row
+--------------------------------------
+Source: solar2/solar2/doctype/public_price_list_accessory_end_row/public_price_list_accessory_end_row.json
+Purpose: Child row for accessory pricing at the end of a specialized price-list section.
+
+Fields: item_name (required Data), stainless_price (Currency), iron_price (Currency), notes (Small Text).
+Scripts: No active scripts; no current parent Table field references it.
+
+10. Public Price List Board Row
+-------------------------------
+Source: solar2/solar2/doctype/public_price_list_board_row/public_price_list_board_row.json
+Purpose: Child row for board/range pricing.
+
+Fields: range_label (required Data), customer_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+11. Public Price List Combiner Row
+----------------------------------
+Source: solar2/solar2/doctype/public_price_list_combiner_row/public_price_list_combiner_row.json
+Purpose: Child row for combiner pricing by line count.
+
+Fields: line_count (required Data), customer_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+12. Public Price List DC Cable Row
+----------------------------------
+Source: solar2/solar2/doctype/public_price_list_dc_cable_row/public_price_list_dc_cable_row.json
+Purpose: Child row for DC cable prices by brand and two specifications.
+
+Fields: brand (required Data), specification_1 (required Data), specification_2 (required Data), price_1 (Currency), price_2 (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+13. Public Price List Elbow Row
+-------------------------------
+Source: solar2/solar2/doctype/public_price_list_elbow_row/public_price_list_elbow_row.json
+Purpose: Child row for elbow item pricing.
+
+Fields: item_name (required Data), iron_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+14. Public Price List Inverter Row
+----------------------------------
+Source: solar2/solar2/doctype/public_price_list_inverter_row/public_price_list_inverter_row.json
+Purpose: Child row for inverter prices by motor size and vendor.
+
+Fields: hp (Float), kw (Float), delexi_price (Currency), fricon_price (Currency), vichi_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+15. Public Price List Iron Pipe Row
+-----------------------------------
+Source: solar2/solar2/doctype/public_price_list_iron_pipe_row/public_price_list_iron_pipe_row.json
+Purpose: Child row for iron pipe prices by thickness and diameter.
+
+Fields: thickness (required Data), inch_3_price, inch_4_price, inch_5_price, inch_6_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+16. Public Price List Marine Cable Row
+-------------------------------------
+Source: solar2/solar2/doctype/public_price_list_marine_cable_row/public_price_list_marine_cable_row.json
+Purpose: Child row for marine cable prices by size and brand.
+
+Fields: size (required Data), turen_price, sival_price, power_price, pm_price, ontel_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+17. Public Price List Plastic Pipe Row
+--------------------------------------
+Source: solar2/solar2/doctype/public_price_list_plastic_pipe_row/public_price_list_plastic_pipe_row.json
+Purpose: Child row for plastic pipe pricing by size.
+
+Fields: size (required Data), customer_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+18. Public Price List Rope Row
+------------------------------
+Source: solar2/solar2/doctype/public_price_list_rope_row/public_price_list_rope_row.json
+Purpose: Child row for welding rope and rope size pricing.
+
+Fields: welding_type, rope_size (Data), welding_price, rope_price (Currency).
+Scripts: No active scripts; no current parent Table field references it.
+
+19. Solar City Company Customer Catalog
+---------------------------------------
+Source: solar2/solar2/doctype/solar_city_company_customer_catalog/solar_city_company_customer_catalog.json
+Purpose: Manage a public catalog organized into customer-facing groups and files.
+
+Metadata: Standalone DocType with change tracking. Permissions: System Manager and Sales Manager.
+
+Fields and relationships:
+- catalog_name: required Data.
+- status: Select: مسودة, منشورة, موقوفة; default مسودة.
+- public_slug: required Data.
+- access_code: Password.
+- header_note: Small Text.
+- groups: Table of Solar City Catalog Group.
+
+Client Script: Solar City Customer Catalog - إدارة ونشر القائمة creates the management UI. It lists groups, adds sub-tabs/files through a dialog, uploads records to Solar City Catalog Attachment, groups attachments by group_row, manages enabled/visible status, and supports publishing/access presentation. It calls frappe.client.get_list and frappe.client.insert from the browser.
+
+20. Solar City Catalog Group
+----------------------------
+Source: solar2/solar2/doctype/solar_city_catalog_group/solar_city_catalog_group.json
+Purpose: Main group/tab inside a customer catalog.
+
+Metadata: Child table; no independent permissions.
+
+Fields:
+- group_name: required Data.
+- note: Small Text.
+- files: Table of Solar City Catalog File.
+
+Scripts: No dedicated scripts. The parent catalog Client Script manages groups and external attachments.
+
+21. Solar City Catalog File
+---------------------------
+Source: solar2/solar2/doctype/solar_city_catalog_file/solar_city_catalog_file.json
+Purpose: File row embedded under a catalog group.
+
+Metadata: Child table; no independent permissions.
+
+Fields: file_name (required Data), attachment (required Attach), note (Small Text), enabled (Check, default enabled).
+
+Scripts: No dedicated scripts. The active catalog UI currently uses the standalone attachment DocType for added sub-tabs/files.
+
+22. Solar City Catalog Attachment
+---------------------------------
+Source: solar2/solar2/doctype/solar_city_catalog_attachment/solar_city_catalog_attachment.json
+Purpose: Standalone attachment record queried by the customer catalog UI.
+
+Metadata: Standalone DocType with change tracking. Only System Manager has permissions.
+
+Fields:
+- catalog: required Link to Solar City Company Customer Catalog.
+- group_row: required Data; stores the name of the parent group row.
+- file_name: required Data.
+- attachment: required Attach.
+- note: Small Text.
+- enabled: Check, default enabled.
+
+Scripts: No active dedicated Client Script. The parent catalog Client Script creates and reads these records.
+
+Fixture scripts affecting standard ERPNext DocTypes
+---------------------------------------------------
+These are included in fixture/client_script.json or fixture/server_script.json but are not among the 22 custom DocTypes above.
+
+- Solar Design: Calculator script computes recommended PV capacity from pump/load, daily energy, irradiance, performance ratio, and margin; validates customer/project/site inputs; calculates string/panel totals; and prepares components. Site Data uses OpenStreetMap geocoding plus NASA POWER and Open-Meteo elevation/weather data. The 3D/5D preview script draws an SVG panel layout.
+- Supplier RFQ Request: validation keeps party_kind, party_match_status, customer, supplier, and quotation consistent. Actions search for an existing Customer or create a Customer and Opportunity after duplicate checks.
+- Customer and Supplier: before-save Client Scripts search for duplicate names; Customer also warns when phone and email are both absent.
+- Quotation: multiple scripts set two-day validity, default payment terms, customer-specific sequence/title, follow-up date/time controls, follow-up logging, terms and introduction editors, mixed Solar & Wells tax totals, solar-row amounts, invoice execution, attachment-aware PDF printing, and list title formatting. One older follow-up script is disabled. The Scheduler Server Script sends a notification/email when an open quotation follow-up is due and records the last notification time.
+- Sales Order and Purchase Order: mapped-document buttons create delivery/receipt and sales/purchase invoices after submission when remaining percentages are below 100. Sales Order can create and link a Project.
+- Sales Invoice and Purchase Invoice: synchronize Project from the source order and assign customer/supplier-specific document sequence/title; list scripts format the displayed title. Payment terms are defaulted on new sales documents.
+- Item: opens an external specification search, checks stock across Bin records, displays stock status, and opens the Solar City stock report.
+- Payment Entry: relabels and requires remarks/reference fields and clarifies project/cost-center labels.
+- Delivery Note and Purchase Receipt: populate default document titles, introductions, receipt declarations, and Terms and Conditions.
+- Customer Followup: provides browser microphone recording, uploads the audio file, and stores it on the follow-up record.
+
+Known gaps and risks
+--------------------
+1. The active Financial Movement scripts depend on custom fields not present in the current DocType JSON: custom_entry_mode, custom_party_category, custom_accounting_lines, custom_operation_key, and custom_financial_movement on accounting documents.
+2. Financial Movement Line is defined but is not connected to Financial Movement by a Table field in the current JSON.
+3. The nine specialized Public Price List row schemas are currently orphaned: no current Table field references them.
+4. Public Price List Visit has a tracking schema but no active script that records visits.
+5. Several important workflows use browser-side frappe.client calls and external APIs; permissions, API availability, and data validation should be tested on the target site.
+6. Generated Python tests are empty FrappeTestCase shells, so the business logic currently has little automated regression coverage.
