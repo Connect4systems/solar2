@@ -1,8 +1,7 @@
 // Copyright (c) 2026, Solar and contributors
 // For license information, please see license.txt
 
-// Frappe combines this file with Client Scripts in the same function.
-// Keep helpers local so their names cannot collide with those scripts.
+// Keep the DocType's party-query helpers local to this script.
 (() => {
     const fm_party_map = {
         'العميل': 'Customer',

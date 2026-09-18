@@ -5,10 +5,13 @@ app_description = "Solar customization"
 app_email = "info@connect4systems.com"
 app_license = "mit"
 
+before_migrate = "solar2.client_script_cleanup.before_migrate"
+after_migrate = "solar2.client_script_cleanup.after_migrate"
+
 fixtures = [
     {
         "dt": "Client Script",
-        "filters": [["module", "=", "Solar2"]],
+        "filters": [["module", "=", "Solar2"], ["enabled", "=", 1]],
     },
     {
         "dt": "Server Script",

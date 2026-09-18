@@ -1,28 +1,35 @@
+"""Check exported Client Scripts for encoding corruption; use --write to repair.
+
+Party queries belong in the DocType JS. Never inject another copy into fixtures.
+"""
+
+import argparse
 import json
 from pathlib import Path
 
-root = Path(__file__).resolve().parent
-path = root / 'solar2/fixtures/client_script.json'
+from solar2.text_encoding import repair_text
 
-data = json.loads(path.read_text(encoding='utf-8'))
-# Reuse the scoped DocType script rather than injecting duplicate top-level constants.
-js = (root / 'solar2/solar2/doctype/financial_movement/financial_movement.js').read_text(encoding='utf-8')
 
-for item in data:
-    if item.get('doctype') == 'Client Script' and item.get('dt') == 'Financial Movement':
-        script = item.get('script', '')
-        if 'fm_apply_party_query' in script:
-            print('Already contains fm_apply_party_query')
-            break
-        if "frappe.ui.form.on('Financial Movement', {" in script:
-            script = script.replace("frappe.ui.form.on('Financial Movement', {", js + "\n\nfrappe.ui.form.on('Financial Movement', {", 1)
-        else:
-            script = script + "\n\n" + js
-        item['script'] = script
-        print('Updated Financial Movement fixture entry.')
-        break
-else:
-    raise RuntimeError('Financial Movement Client Script entry not found')
+def main():
+	parser = argparse.ArgumentParser(description=__doc__)
+	parser.add_argument("--write", action="store_true")
+	args = parser.parse_args()
+	path = Path(__file__).resolve().parent / "solar2/fixtures/client_script.json"
+	rows = json.loads(path.read_text(encoding="utf-8"))
+	fixed = [
+		{key: repair_text(value) if isinstance(value, str) else value for key, value in row.items()}
+		for row in rows
+	]
+	if len({row["name"] for row in fixed}) != len(fixed):
+		raise SystemExit("Duplicate script names after decoding; reconcile duplicates before exporting.")
+	if fixed == rows:
+		print("Client Script fixture encoding is clean.")
+	elif args.write:
+		path.write_text(json.dumps(fixed, ensure_ascii=False, indent=4) + "\n", encoding="utf-8")
+		print("Repaired Client Script fixture encoding.")
+	else:
+		raise SystemExit("Corrupted Client Script text found; run with --write to repair.")
 
-path.write_text(json.dumps(data, ensure_ascii=False, indent=4), encoding='utf-8')
-print('JSON_OK')
+
+if __name__ == "__main__":
+	main()
